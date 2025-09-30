@@ -1,55 +1,138 @@
 # AI Evaluations
 
-Have you ever wondered how well different AI models perform on various tasks? Congratulations! You've just found an amazing, out-of-this-world resource that walks you through how to evaluate AI models effectively.
+Have you ever wondered how well different AI models perform on various tasks?  
+Good news—you’ve just found a clear, approachable guide to understanding how to evaluate AI models effectively.
 
-## Why do we need to evaluate AI?
-When we train a model, we need to figure out a way to evaluate its performance so that we can know how it's doing. 
+## Why Evaluate AI?
+Training an AI model is only half the battle. To know whether it’s performing well, we need reliable ways to measure its success and failure. That’s where evaluation metrics come in.
 
 ## Common Evaluation Metrics
-There are many ways in which we can evaluate AI. The most common ways are 
-- Accuracy
-- Precision
-- Recall
-- F1 Score. 
+There are many ways to measure an AI’s performance, but four metrics are used most often:
 
-All four of these metrics relate to the confusion matrix. Please refer to the following:
+- **Accuracy**
+- **Precision**
+- **Recall**
+- **F1 Score**
 
-|               | **Predicted Positive** | **Predicted Negative** |
-| :------------ | :-------------------: | :--------------------: |
+All of these metrics are based on the *confusion matrix*, shown below:
+
+|                  | **Predicted Positive** | **Predicted Negative** |
+| :--------------- | :--------------------: | :--------------------: |
 | **Actual Positive** | True Positive (TP)    | False Negative (FN)    |
 | **Actual Negative** | False Positive (FP)   | True Negative (TN)     |
 
 ## Evaluation Calculations
-Let's take a moment to see how each of the evaluation metrics use the confusion matrix to evaluate an AI's performance.
+Let’s walk through how each metric uses the confusion matrix to measure model performance.
 
 ### Accuracy
-Accuracy is concerned with how many total correct guesses the AI made. It is calculated by counting how many correct predictions, either positively or negatively, were made proportional to the whole confusion matrix. Here's the calculation:
+Accuracy answers a simple question: *What fraction of predictions were correct overall?*
+
 $$
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
 $$
-Accuracy is great if you purely want to know how many correct predictions are being made.
+
+Accuracy works well when errors are equally costly, but it can be misleading if false positives or false negatives matter more in your context.
+
+---
 
 ### Precision
-Sometimes, however, a false positive can be extremely detrimental. For example, maybe a false positive medical diagnosis would be very costly in terms of money, but also in terms of emotional duress in the patient. Precision then is concerned by trying to help the false positive rate be lower. Precision measures the proportion of positive classifications compared to everything the AI predicts as positive.
+Precision focuses on the quality of positive predictions. It asks: *Of everything the model predicted as positive, how many were actually correct?*
 
 $$
 \text{Precision} = \frac{TP}{TP + FP}
 $$
 
+This is especially important in scenarios where false positives carry a high cost—for example, diagnosing a serious illness when the patient is actually healthy.
+
+---
+
 ### Recall
-Recall in some ways, is the opposite of precision. Instead of trying to minimize the false positive rate, recall tries to minimize the false negative rate. Recall measures the actual positives correctly identified.
+Recall flips the question: *Of all the actual positives, how many did the model successfully identify?*
 
 $$
 \text{Recall} = \frac{TP}{TP + FN}
 $$
 
-### F1 Scores
-The challenge with recall and precision is that each ignores a piece of the confusion matrix. Thus we need to find a way to balance the two. F1 scores are a great way to balance precision and recall.
+High recall is crucial when missing a positive case would be dangerous or costly—such as failing to detect fraud or overlooking a disease.
+
+---
+
+### F1 Score
+Precision and recall often pull in opposite directions. The **F1 Score** balances the two by taking their harmonic mean:
 
 $$
-\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision}+\text{Recall}}
+\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
 $$
-## Walkthrough example
-## Takeaway 
+
+The F1 Score is most useful when you need a single number that captures the trade-off between precision and recall.
+
+---
+<details>
+<summary>Walkthrough Example: Breast Cancer Dataset</summary>
+
+Let's walk through an example together of how to use these metrics. We are going to train a simple model on the Breast Cancer Wisconsin dataset. This dataset is an example of binary classification, with a slightly imbalanced dataset and will thus be a great example to showcase the differences in evaluation metrics. Create a jupyter notebook and follow along.
+
+First we are going to get all our imports.
+```
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix
+```
+
+After that, we need to load our data
+
+```
+data = load_breast_cancer()
+X, y = data.data, data.target # y=0 malignant, y=1 benign
+```
+
+We then need to split our data into a training and testing set. Luckily, sklearn provides a function that will handle this for us. Make sure to include `stratify=y` as an argument to preserve class balances in the dataset.
+```
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
+```
+
+Let's then train a model and make some predictions
+```
+model = LogisticRegression(max_iter=500)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+
+We then need to extract our confusion matrix using the following:
+```
+cm = confusion_matrix(y_test, y_pred)
+tn, fp, fn, tp = cm.ravel()
+```
+
+We can then calculate accuracy, precision, recall, and f1 scores using the equations from above.
+```
+# Accuracy
+accuracy = (tp + tn) / (tp + tn + fp + fn)
+
+# Precision (positive = class 1, benign in this dataset)
+precision = tp / (tp + fp)
+
+# Recall (a.k.a sensitivity, true positive rate)
+recall = tp / (tp + fn)
+
+# F1 Score
+f1 = 2 * (precision * recall) / (precision + recall)
+
+# Print our metrics
+print(f"Accuracy: {accuracy:.4f}")
+print(f"Precision: {precision:.4f}")
+print(f"Recall: {recall:.4f}")
+print(f"F1 Score: {f1:.4f}")
+```
+
+After we run everything, you should see something similar to the following:
+- Accuracy: 0.9415
+- Precision: 0.9292
+- Recall: 0.9813
+- F1 Score: 0.9545
+
+As you can see, different evaluation metrics don't perform the same, and hopefully you can see the importance of choosing the right metric based on your needs.
+</details>
 
 
