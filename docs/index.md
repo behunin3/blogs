@@ -75,9 +75,9 @@ The F1 Score is most useful when you need a single number that captures the trad
 
 <details markdown="1">
 
-<summary>Walkthrough Example: Breast Cancer Dataset</summary>
+<summary><strong style="font-size:1.3em;">Walkthrough Example: Breast Cancer Dataset</strong></summary>
 
-Let's walk through an example together of how to use these metrics. We are going to train a simple model on the Breast Cancer Wisconsin dataset. This dataset is an example of binary classification, with a slightly imbalanced dataset and will thus be a great example to showcase the differences in evaluation metrics. Create a jupyter notebook and follow along.
+Let's walk through an example together of how to use these metrics. We are going to train a simple model on the Breast Cancer Wisconsin dataset. This dataset is an example of binary classification with a slightly imbalanced dataset, and will thus be a great example to showcase the differences in evaluation metrics. Create a jupyter notebook and follow along.
 
 First we are going to get all our imports.
 
@@ -138,22 +138,26 @@ print(f"Recall: {recall:.4f}")
 print(f"F1 Score: {f1:.4f}")
 ```
 
-After we run everything, you should see something similar to the following:
+After we run everything, you should see something similar to the following. I've listed my performance metrics, but yours can vary.
 - Accuracy: 0.9415
 - Precision: 0.9292
 - Recall: 0.9813
 - F1 Score: 0.9545
 
-As you can see, different evaluation metrics don't perform the same, and hopefully you can see the importance of choosing the right metric based on your needs.
+This walkthrough shows that different evaluation metrics reveal different aspects of a model’s performance. By examining accuracy, precision, recall, and F1 together, you can see why no single metric tells the whole story and why choosing the right metric—or combination of metrics—matters for your specific goals.
 
 </details>
 
 ## Conclusion
 
-Different evaluation metrics highlight different aspects of an AI model's performance. **Accuracy** tells you how often the model is correct overall, **precision** emphasizes the reliability of positive predictions, **recall** captures how well the model identifies all true positives, and **F1 Score** balances precision and recall into a single number.
+Different evaluation metrics highlight different facets of an AI model's performance:
 
-Choosing the right metric—or a combination of metrics—depends on the problem you’re solving and the cost of different types of errors. For example, in medical diagnoses, missing a positive case may be far more critical than accidentally predicting a false positive.
+- **Accuracy** measures how often the model is correct overall.
+- **Precision** emphasizes the reliability of positive predictions.
+- **Recall** captures how well the model identifies all true positives.
+- **F1 Score** balances precision and recall into a single number.
 
-Now that you’ve seen how to calculate and interpret these metrics, try applying them to a different dataset or model. Experimenting with datasets that are more imbalanced or noisy will help you see why some metrics are more informative than others and deepen your understanding of model evaluation in real-world scenarios.
+Choosing the right metric—or a combination—depends on the problem you’re solving and the real-world costs of different types of errors. For instance, in medical diagnoses, missing a positive case may be far more critical than a false positive.
 
+Now that you’ve learned how to calculate and interpret these metrics, try applying them to a different dataset or model. Experimenting with more imbalanced or noisy datasets will help you understand why some metrics are more informative than others and deepen your grasp of model evaluation in real-world scenarios.
 
