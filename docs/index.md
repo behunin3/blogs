@@ -143,6 +143,7 @@ After we run everything, you should see something similar to the following:
 - F1 Score: 0.9545
 
 As you can see, different evaluation metrics don't perform the same, and hopefully you can see the importance of choosing the right metric based on your needs.
+
 </details>
 
 ## Conclusion
