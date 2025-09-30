@@ -144,6 +144,13 @@ After we run everything, you should see something similar to the following. I've
 - Recall: 0.9813
 - F1 Score: 0.9545
 
+### Compare Scores Across Different Models
+To further illustrate how these evaluation metrics differ, please refer to the following image. These metrics were derived from the same dataset, just different sklearn models.
+
+![Different AI Model Evaluation Comparisions](/imgs/metrics_comparison.jpg)
+
+### Walkthrough Takeaway
+
 This walkthrough shows that different evaluation metrics reveal different aspects of a model’s performance. By examining accuracy, precision, recall, and F1 together, you can see why no single metric tells the whole story and why choosing the right metric—or combination of metrics—matters for your specific goals.
 
 </details>
@@ -161,3 +168,4 @@ Choosing the right metric—or a combination—depends on the problem you’re s
 
 Now that you’ve learned how to calculate and interpret these metrics, try applying them to a different dataset or model. Experimenting with more imbalanced or noisy datasets will help you understand why some metrics are more informative than others and deepen your grasp of model evaluation in real-world scenarios.
 
+For additional information about these metrics, please visit this blog post by [Airlie Hilliard](https://www.holisticai.com/blog/how-to-measure-algorithm-efficacy). If you want to learn more about other kinds of AI performance metrics, check out [this post](https://nebius.com/blog/posts/ai-model-performance-metrics) by the Nebius team.
