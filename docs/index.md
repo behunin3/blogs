@@ -72,7 +72,9 @@ $$
 The F1 Score is most useful when you need a single number that captures the trade-off between precision and recall.
 
 ---
-<details>
+
+<details markdown="1">
+
 <summary>Walkthrough Example: Breast Cancer Dataset</summary>
 
 Let's walk through an example together of how to use these metrics. We are going to train a simple model on the Breast Cancer Wisconsin dataset. This dataset is an example of binary classification, with a slightly imbalanced dataset and will thus be a great example to showcase the differences in evaluation metrics. Create a jupyter notebook and follow along.
