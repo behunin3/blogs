@@ -73,6 +73,7 @@ $$
 <p>Let's walk through an example together of how to use these metrics. We are going to train a simple model on the Breast Cancer Wisconsin dataset. This dataset is an example of binary classification, with a slightly imbalanced dataset and will thus be a great example to showcase the differences in evaluation metrics. Create a jupyter notebook and follow along.</p>
 
 <p>First we are going to get all our imports.</p>
+
 ```python
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -88,11 +89,13 @@ X, y = data.data, data.target # y=0 malignant, y=1 benign
 ```
 
 <p>We then need to split our data into a training and testing set. Luckily, sklearn provides a function that will handle this for us. Make sure to include `stratify=y` as an argument to preserve class balances in the dataset.</p>
+
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
 ```
 
 <p>Let's then train a model and make some predictions</p>
+
 ```python
 model = LogisticRegression(max_iter=500)
 model.fit(X_train, y_train)
@@ -100,12 +103,14 @@ y_pred = model.predict(X_test)
 ```
 
 <p>We then need to extract our confusion matrix using the following:</p>
+
 ```python
 cm = confusion_matrix(y_test, y_pred)
 tn, fp, fn, tp = cm.ravel()
 ```
 
 <p>We can then calculate accuracy, precision, recall, and f1 scores using the equations from above.</p>
+
 ```python
 # Accuracy
 accuracy = (tp + tn) / (tp + tn + fp + fn)
