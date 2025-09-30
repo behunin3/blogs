@@ -147,7 +147,7 @@ After we run everything, you should see something similar to the following. I've
 ### Compare Scores Across Different Models
 To further illustrate how these evaluation metrics differ, please refer to the following image. These metrics were derived from the same dataset, just different sklearn models.
 
-![Different AI Model Evaluation Comparisions](/docs/imgs/metrics_comparison.jpg)
+![Different AI Model Evaluation Comparisions](imgs/metrics_comparison.jpg)
 
 ### Walkthrough Takeaway
 
