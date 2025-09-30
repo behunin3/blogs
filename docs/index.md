@@ -145,9 +145,11 @@ After we run everything, you should see something similar to the following. I've
 - F1 Score: 0.9545
 
 ### Compare Scores Across Different Models
-To further illustrate how these evaluation metrics differ, please refer to the following image. These metrics were derived from the same dataset, just different sklearn models.
+To illustrate how evaluation metrics can differ, the chart below shows Accuracy, Precision, Recall, and F1 Score for three different models trained on the same dataset.
 
 ![Different AI Model Evaluation Comparisions](imgs/metrics_comparison.jpg)
+
+As you can see, the scores vary not only between metrics but also depending on the model. Understanding how each metric behaves takes some practice, but all of them are straightforward to calculate and implement. Experimenting with different models and metrics will help you develop an intuitive sense of which metrics matter most for your problem.
 
 ### Walkthrough Takeaway
 
